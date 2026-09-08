@@ -1,139 +1,73 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="CyberLab - البرمجة والأمن السيبراني والشبكات">
+<meta name="robots" content="index, follow">
+<title>CyberLab | البرمجة والأمن السيبراني</title>
 
-  <meta name="robots" content=" nofollow">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Tahoma,sans-serif;background:#070b12;color:#eee;line-height:1.7}
+header{padding:15px 6%;background:#0b111b;border-bottom:1px solid #203047;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+.logo{color:#42f5a7;font-size:25px;font-weight:bold}
+nav a{color:#ccc;text-decoration:none;margin:0 8px}
+nav a:hover{color:#42f5a7}
+.hero{text-align:center;padding:100px 6%;min-height:75vh;background:radial-gradient(circle,#10263a,#070b12 60%)}
+h1{font-size:60px;color:#42f5a7}
+.hero p{max-width:650px;margin:20px auto;color:#bbc6d5;font-size:18px}
+.btn{display:inline-block;background:#42f5a7;color:#06100b;padding:10px 25px;border-radius:7px;text-decoration:none;font-weight:bold}
+section{padding:65px 6%}
+h2{text-align:center;color:#42f5a7;margin-bottom:35px;font-size:32px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;max-width:1000px;margin:auto}
+.card{background:#0d1520;border:1px solid #203047;border-radius:12px;padding:25px;text-align:center}
+.card:hover{border-color:#42f5a7}
+.card h3{margin:10px 0}
+.card p{color:#aab6c6}
+.about{text-align:center;max-width:750px;margin:auto;color:#b8c3d2}
+footer{text-align:center;padding:25px;background:#05080d;color:#78869a;border-top:1px solid #203047}
+@media(max-width:600px){header{flex-direction:column;gap:10px}h1{font-size:45px}nav a{margin:0 4px}}
+</style>
+</head>
 
-  <title>CyberLab | البرمجة والأمن السيبراني</title>
+<body>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<header>
+<div class="logo">CyberLab</div>
+<nav>
+<a href="#home">الرئيسية</a>
+<a href="#fields">المجالات</a>
+<a href="#about">حول</a>
+</nav>
+</header>
 
-    html {
-      scroll-behavior: smooth;
-    }
+<section class="hero" id="home">
+<h1>CyberLab</h1>
+<p>منصة تعليمية لاستكشاف البرمجة والأمن السيبراني والشبكات وأنظمة Linux بطريقة آمنة وقانونية.</p>
+<a class="btn" href="#fields">ابدأ التعلم</a>
+</section>
 
-    body {
-      font-family: Arial, Tahoma, sans-serif;
-      background: #070b12;
-      color: #e8eef7;
-      line-height: 1.7;
-    }
+<section id="fields">
+<h2>مجالاتنا</h2>
+<div class="cards">
+<div class="card"><h3>💻 البرمجة</h3><p>تعلم أساسيات البرمجة وبناء المشاريع.</p></div>
+<div class="card"><h3>🔐 الأمن السيبراني</h3><p>تعرف على مبادئ حماية الأنظمة والشبكات.</p></div>
+<div class="card"><h3>🐧 Linux</h3><p>تعلم أوامر Linux وإدارة الأنظمة.</p></div>
+<div class="card"><h3>🌐 الشبكات</h3><p>افهم IP والبروتوكولات وطريقة عمل الشبكات.</p></div>
+</div>
+</section>
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(7, 11, 18, 0.96);
-      border-bottom: 1px solid #1c2a3d;
-      padding: 16px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+<section id="about">
+<h2>حول CyberLab</h2>
+<div class="about">
+<p>CyberLab موقع تعليمي يركز على البرمجة والأمن السيبراني والشبكات. جميع المحتويات مخصصة للتعلم والاستخدام القانوني والآمن.</p>
+</div>
+</section>
 
-    .logo {
-      color: #42f5a7;
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
+<footer>
+<p>© 2026 CyberLab</p>
+</footer>
 
-    nav {
-      display: flex;
-      gap: 22px;
-    }
-
-    nav a {
-      color: #c7d2e2;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #42f5a7;
-    }
-
-    .hero {
-      min-height: 78vh;
-      padding: 100px 7%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background:
-        radial-gradient(circle at center, #10263a 0%, #070b12 58%);
-    }
-
-    .hero-content {
-      max-width: 850px;
-    }
-
-    .hero h1 {
-      color: #42f5a7;
-      font-size: clamp(45px, 9vw, 85px);
-      margin-bottom: 15px;
-      text-shadow: 0 0 25px rgba(66, 245, 167, 0.35);
-    }
-
-    .hero h2 {
-      font-size: clamp(22px, 4vw, 34px);
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      color: #aebbd0;
-      font-size: 18px;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .buttons {
-      margin-top: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 13px 26px;
-      margin: 6px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .primary {
-      background: #42f5a7;
-      color: #06100b;
-    }
-
-    .secondary {
-      border: 1px solid #42f5a7;
-      color: #42f5a7;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 20px rgba(66, 245, 167, 0.3);
-    }
-
-    .section {
-      padding: 75px 7%;
-    }
-
-    .section-title {
-      text-align: center;
-      color: #42f5a7;
-      font-size: 34px;
-      margin-bottom: 40px;
-    }
-
-    .cards {
-      max-width: 1100px;
-      margin
+</body>
+</html>
