@@ -53,4 +53,226 @@
 
     .hero h2 {
       color: #00ff9d;
-      margin-bottom: 
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #a9bdc9;
+      line-height: 1.8;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #081522;
+      border: 1px solid #12344d;
+      border-radius: 15px;
+      padding: 22px;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #00eaff;
+    }
+
+    .card h3 {
+      color: #00eaff;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #91a9b8;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      background: #00eaff;
+      color: #001018;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00ff9d;
+    }
+
+    .output {
+      margin-top: 25px;
+      background: #02070d;
+      border: 1px solid #12344d;
+      border-radius: 15px;
+      padding: 20px;
+      min-height: 100px;
+    }
+
+    .output h3 {
+      color: #00ff9d;
+      margin-bottom: 10px;
+    }
+
+    #result {
+      color: #b9d1dc;
+      white-space: pre-wrap;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      color: #587080;
+      padding: 30px 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>⚡ CyberLab</h1>
+    <p>مختبر الأمن السيبراني التعليمي</p>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <h2>مرحبًا بك في CyberLab</h2>
+      <p>
+        منصة تعليمية للتعرف على مفاهيم الأمن السيبراني،
+        اختبار الأكواد بشكل آمن، والتدرب على حماية الأنظمة.
+      </p>
+    </section>
+
+    <section class="tools">
+
+      <div class="card">
+        <h3>🔐 مولد كلمة مرور</h3>
+        <p>إنشاء كلمة مرور قوية وعشوائية للاستخدام الآمن.</p>
+        <button onclick="generatePassword()">تشغيل الأداة</button>
+      </div>
+
+      <div class="card">
+        <h3>🛡️ فحص قوة كلمة المرور</h3>
+        <p>تحليل قوة كلمة المرور التي تدخلها محليًا.</p>
+        <button onclick="checkPassword()">فحص كلمة المرور</button>
+      </div>
+
+      <div class="card">
+        <h3>🧪 مختبر تدريبي</h3>
+        <p>بيئة تعليمية لعرض أمثلة ومفاهيم الأمن السيبراني.</p>
+        <button onclick="trainingLab()">فتح المختبر</button>
+      </div>
+
+      <div class="card">
+        <h3>📚 دروس الأمن السيبراني</h3>
+        <p>معلومات مختصرة عن حماية الحسابات والأنظمة.</p>
+        <button onclick="lessons()">عرض الدروس</button>
+      </div>
+
+    </section>
+
+    <section class="output">
+      <h3>📟 النتائج</h3>
+      <div id="result">
+        اختر إحدى الأدوات لعرض النتيجة هنا.
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    CyberLab © 2026 — للتعلم والحماية
+  </footer>
+
+  <script>
+
+    function showResult(text) {
+      document.getElementById("result").textContent = text;
+    }
+
+    function generatePassword() {
+      const chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+      let password = "";
+
+      for (let i = 0; i < 16; i++) {
+        password += chars[Math.floor(Math.random() * chars.length)];
+      }
+
+      showResult(
+        "كلمة المرور المقترحة:\n\n" +
+        password +
+        "\n\nاحفظها في مدير كلمات مرور موثوق."
+      );
+    }
+
+    function checkPassword() {
+      const password = prompt("أدخل كلمة المرور للفحص:");
+
+      if (password === null) return;
+
+      let score = 0;
+
+      if (password.length >= 8) score++;
+      if (password.length >= 12) score++;
+      if (/[A-Z]/.test(password)) score++;
+      if (/[a-z]/.test(password)) score++;
+      if (/[0-9]/.test(password)) score++;
+      if (/[^A-Za-z0-9]/.test(password)) score++;
+
+      let level = "";
+
+      if (score <= 2) {
+        level = "ضعيفة ❌";
+      } else if (score <= 4) {
+        level = "متوسطة ⚠️";
+      } else {
+        level = "قوية ✅";
+      }
+
+      showResult(
+        "نتيجة الفحص:\n\n" +
+        "القوة: " + level +
+        "\nالنقاط: " + score + " / 6"
+      );
+    }
+
+    function trainingLab() {
+      showResult(
+        "🧪 المختبر التدريبي\n\n" +
+        "يمكنك استخدام هذه المنصة لتعلم:\n" +
+        "• أساسيات أمن الويب\n" +
+        "• حماية الحسابات\n" +
+        "• كلمات المرور الآمنة\n" +
+        "• التحقق من المدخلات\n" +
+        "• مفاهيم الشبكات\n\n" +
+        "جميع الاختبارات هنا تعليمية وآمنة."
+      );
+    }
+
+    function lessons() {
+      showResult(
+        "📚 دروس مقترحة:\n\n" +
+        "1. أساسيات الأمن السيبراني\n" +
+        "2. حماية كلمات المرور\n" +
+        "3. المصادقة الثنائية 2FA\n" +
+        "4. أمن تطبيقات الويب\n" +
+        "5. أساسيات الشبكات\n" +
+        "6. اكتشاف الثغرات في بيئات تدريبية\n" +
+        "7. حماية المواقع من الهجمات"
+      );
+    }
+
+  </script>
+
+</body>
+</html>
