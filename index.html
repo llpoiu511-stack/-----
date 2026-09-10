@@ -6,6 +6,69 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+body{min-height:100vh;background:#02060f;color:#fff}
+.page{display:none;min-height:100vh;align-items:center;justify-content:center;padding:20px}
+.page.active{display:flex}
+.card{width:92%;max-width:420px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.13);border-radius:28px;padding:32px}
+.logo{text-align:center;font-size:32px;font-weight:800;text-shadow:0 0 15px #0090ff}
+.input{width:100%;padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.15);background:rgba(0,0,0,0.45);color:#fff;margin-top:10px}
+.btn{width:100%;margin-top:20px;padding:14px;border-radius:14px;border:none;background:linear-gradient(135deg,#0090ff,#00d4ff);color:#000;font-weight:800;cursor:pointer}
+.wrap{width:100%;max-width:480px}
+.item{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:18px;border-radius:18px;margin-bottom:12px;cursor:pointer;display:flex;justify-content:space-between}
+.book-container{height:75vh;overflow-y:auto;scroll-snap-type:y mandatory}
+.book-page{scroll-snap-align:start;min-height:70vh;background:#fffef2;color:#111;border-radius:14px;padding:20px 18px 40px;margin-bottom:14px;border-right:5px solid #7a4d00;position:relative}
+.back{color:#5ab8ff;cursor:pointer;display:block;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div id="p1" class="page active">
+  <div class="card">
+    <div class="logo">CYBER LAB</div>
+    <input class="input" id="u" placeholder="اسم المستخدم - اكتب خطاب">
+    <button class="btn" onclick="let v=document.getElementById('u').value.trim(); if(v==''){alert('اكتب اسمك');}else{openPage(2)}">دخول آمن →</button>
+    <p style="text-align:center;font-size:11px;color:#8bb9ff;margin-top:12px">اذا ما فتح اضغط هنا مرة تانية</p>
+  </div>
+</div>
+
+<div id="p2" class="page"><div class="wrap">
+  <div class="item" onclick="openPage(7)" style="border-color:#00ff88;background:rgba(0,255,136,0.15)"><div>📖 الوعي الأمني - اضغط هنا</div><span>📚</span></div>
+  <div class="item" onclick="openPage(3)"><div>قسم البرامج</div><span>↗</span></div>
+  <div class="item" onclick="openPage(1)"><div>الخروج</div><span>×</span></div>
+</div></div>
+
+<div id="p7" class="page"><div class="wrap">
+<span class="back" onclick="openPage(2)">← رجوع</span>
+<h2 style="text-align:center;color:#00ff88">كتاب الوعي الأمني</h2>
+<p style="text-align:center;font-size:11px;color:#8bb9ff;margin-bottom:12px">اسحب لتحت - كل سحبة صفحة</p>
+<div class="book-container">
+  <div class="book-page"><b>الغلاف: الوعي الأمني</b><br><br>دليلك للحماية الرقمية<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%)">-0-</div></div>
+  <div class="book-page">ماذا تفعل عند الاختراق؟<br><br>افصل النت - حذر اصدقائك - انسخ بياناتك - فرمت الجهاز<br><br>#الوعي_الأمني<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%)">-1-</div></div>
+  <div class="book-page">كيف تعرف هاتفك به فيروس؟<br><br>بطء التطبيقات وتجمد الشاشة ونفاذ البطارية بسرعة<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%)">-2-</div></div>
+  <div class="book-page">حماية هاتفك<br><br>1 نمط شاشة قوي<br>2 لا تحمل الا من مصادر موثوقة<br>3 تأكد من جوجل بلاي<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%)">-3-</div></div>
+  <div class="book-page">دور الوعي السيبراني<br><br>لا تشارك معلوماتك - لا تضغط روابط مجهولة - تحقق من الأخبار - كلمة سر قوية<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%)">-4-</div></div>
+  <div class="book-page">طرق الاستهداف<br><br>برمجيات خبيثة - هندسة اجتماعية - واي فاي عام - تصيد - ثغرات<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%)">-5-</div></div>
+  <div class="book-page">مصطلحات هامة<br><br>فيروس - ديدان - تروجان - فدية - Spyware - Adware - Rootkits<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%)">-6-</div></div>
+  <div class="book-page">معلومة<br><br>80% يستخدمون 123456<br>استخدم ##_***$_$<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%)">-7-</div></div>
+  <div class="book-page">العدو لا يهاجم بالسلاح دائماً<br><br>الاختراق استراتيجية اساسية<br>فكن حذر<br><br><a href="https://t.me/+5t6fLSmCTN81NmQ8" target="_blank" style="background:#000;color:#fff;padding:10px;border-radius:8px;text-decoration:none;display:block;text-align:center">انضم للقناة</a><div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%)">-8-</div></div>
+</div>
+</div></div>
+
+<div id="p3" class="page"><div class="wrap"><span class="back" onclick="openPage(2)">← رجوع</span><div style="background:rgba(255,255,255,0.08);padding:20px;border-radius:16px">محتوى</div></div></div>
+
+<script>
+function openPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('p'+n).classList.add('active')}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYBER LAB</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
 body{min-height:100vh;background:#02060f;color:#fff;background-image:radial-gradient(circle at 50% 20%,rgba(0,140,255,0.22),transparent 60%)}
 .page{display:none;min-height:100vh;align-items:center;justify-content:center;padding:20px}
 .page.active{display:flex}
