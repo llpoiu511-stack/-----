@@ -3,36 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyberLab - Premium Cybersecurity Lab</title>
+<title>CyberLab</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-  body{background:#050a14;color:#c9e8ff}
-
-  /* --- شاشة الدخول الفخمة --- */
+  body{background:#020712;color:#c9e8ff;overflow-x:hidden}
   #loginScreen{
-    width:100%;height:100vh;
-    background:url('cyberlab_luxury_banner.webp') no-repeat center center;
-    background-size:cover;display:flex;justify-content:center;align-items:center;position:relative;
+    width:100%;height:100vh;display:flex;justify-content:center;align-items:center;position:relative;
+    background: #020712 url('cyberlab_luxury_banner.webp') no-repeat center center;
+    background-size: cover;
   }
-  #loginScreen .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6)}
-  .login-box{
-    position:relative;z-index:2;background:rgba(10,25,50,0.88);
-    border:1px solid #d4af37;border-radius:20px;padding:35px 30px;width:90%;max-width:380px;text-align:center;
-    box-shadow:0 0 40px rgba(212,175,55,0.4);backdrop-filter:blur(10px);
+  /* خلفية احتياطية فخمة اذا الصورة مش موجودة */
+  #loginScreen::before{
+    content:'';position:absolute;inset:0;
+    background: radial-gradient(circle at 30% 30%, #0a2a5a 0%, #020712 60%), linear-gradient(120deg, #001a33, #000);
+    z-index:0;
   }
-  .login-box h2{color:#FFD700;font-size:28px;text-shadow:0 0 10px #FFD700}
+  .overlay{position:absolute;inset:0;background:rgba(0,0,0,0.6);z-index:1}
+  .login-box{position:relative;z-index:2;background:rgba(10,25,50,0.9);border:1px solid #d4af37;border-radius:20px;padding:30px;width:92%;max-width:360px;text-align:center;box-shadow:0 0 30px rgba(255,215,0,0.3)}
+  .login-box h2{color:#FFD700;font-size:30px}
   .login-box p{color:#8dd8ff;font-size:11px;letter-spacing:3px;margin:10px 0 20px}
-  .login-box input{width:100%;padding:13px;border-radius:30px;border:1px solid #2a5a8a;background:rgba(0,0,0,0.6);color:#fff;text-align:center;font-size:16px;outline:none;margin-bottom:15px}
-  .login-box button{width:100%;padding:12px;border-radius:30px;border:none;background:linear-gradient(90deg,#d4af37,#FFD700);color:#000;font-weight:bold;font-size:16px;cursor:pointer}
-  .error{color:#ff5c5c;font-size:13px;margin-top:10px;display:none}
+  input{width:100%;padding:12px;border-radius:30px;border:1px solid #2a5a8a;background:#000;color:#fff;text-align:center;font-size:16px;margin-bottom:12px}
+  button{width:100%;padding:12px;border-radius:30px;border:none;background:#FFD700;color:#000;font-weight:bold;font-size:16px;cursor:pointer}
+  #dashboardScreen{display:none;max-width:1200px;margin:0 auto;padding:20px}
+  .header{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border:1px solid #1e3a5f;padding:15px;border-radius:12px;background:rgba(10,20,40,0.9)}
+  .badge{padding:5px 10px;border:1px solid #1e3a5f;border-radius:20px;font-size:11px;background:#0a1a2e;margin-left:5px}
+  .main{display:grid;grid-template-columns:260px 1fr;gap:15px;margin-top:15px}
+  .sidebar{border:1px solid #1e3a5f;border-radius:12px;padding:10px;background:rgba(8,18,35,0.95)}
+  .btn{width:100%;padding:12px;margin:6px 0;border:1px solid #2a5a8a;border-radius:10px;background:#0f2747;color:#bfe3ff;text-align:right;cursor:pointer}
+  .btn.active{border-color:#00bfff;color:#fff;box-shadow:0 0 10px rgba(0,190,255,0.4)}
+  .panel{border:1px solid #1e3a5f;border-radius:12px;padding:20px;background:rgba(8,18,35,0.95)}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .stat{border:1px solid #2a5a8a;border-radius:10px;padding:15px;text-align:center;background:rgba(10,25,50,0.6)}
+  .num{font-size:36px;color:#8dd8ff;font-weight:700}
+</style>
+</head>
+<body>
+<div id="loginScreen">
+  <div class="overlay"></div>
+  <div class="login-box">
+    <h2>CyberLab</h2>
+    <p>PREMIUM CYBERSECURITY LAB</p>
+    <input type="password" id="pass" placeholder="كلمة السر">
+    <button onclick="checkPass()">دخول المختبر</button>
+    <div id="err" style="color:#ff5c5c;font-size:12px;margin-top:8px;display:none">كلمة السر خطأ</div>
+  </div>
+</div>
 
-  /* --- لوحة التحكم نفس الصورة بالضبط --- */
-  #dashboardScreen{display:none;padding:20px;max-width:1250px;margin:0 auto}
-  .header{display:flex;justify-content:space-between;align-items:center;border:1px solid #1e3a5f;padding:15px 20px;border-radius:12px;background:rgba(10,20,40,0.9);box-shadow:0 0 20px rgba(0,150,255,0.2)}
-  .header h1{font-size:26px;color:#eaf6ff;text-shadow:0 0 10px #00aaff}
-  .header span{font-size:12px;opacity:0.8}
-  .badge{padding:6px 12px;border-radius:20px;background:#0a1a2e;border:1px solid #1e5a8a;margin-right:8px;font-size:11px}
-  .main{display:grid;grid-template-columns:270px 1fr;gap:20px;margin-top:20px}
-  .sidebar{border:1px solid #1e3a5f;border-radius:12px;padding:12px;background:rgba(8,18,35,0.95)}
-  .btn{display:flex;align-items:center;gap:12px;width:100%;padding:13px 15px;margin:9px 0;background:linear-gradient(180deg,#0f2747,#0a1c34);border:1px solid #2a5a8a;border-radius:10px;color:#bfe3ff;cursor:pointer;text-align:right;transition:0.2s;box-shadow:inset 0 0 10px rgba(0,180,255,0.15);
+<div id="dashboardScreen">
+  <div class="header">
+    <div><h2>لوحة التحكم السيبرانية</h2><small>أدوات الاختراق الأخلاقي • مراقبة أمنية متقدمة</small></div>
+    <div><span class="badge">المستخدم: admin_root</span><span class="badge" style="color:#5cffb0">● متصل</span></div>
+  </div>
+  <div class="main">
+    <div class="sidebar">
+      <button class="btn active">🛡️ الرئيسية</button>
+      <button class="btn">🎯 فحص الثغرات</button>
+      <button class="btn">🌐 تحليل الشبكة</button>
