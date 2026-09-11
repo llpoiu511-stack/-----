@@ -3,112 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyberLab - لوحة التحكم السيبرانية</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>CyberLab</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-body{background:#01040a;color:#d4f0ff;min-height:100vh}
-#login{height:100vh;display:flex;justify-content:center;align-items:center;background:radial-gradient(ellipse at 50% 0%, #0d2a5a 0%, #01040a 65%);padding:15px}
-.lbox{width:100%;max-width:390px;background:linear-gradient(180deg,rgba(12,28,58,0.98),rgba(5,14,28,0.98));border:1px solid #d4af37;border-radius:22px;padding:34px 28px;text-align:center;box-shadow:0 0 35px rgba(0,180,255,0.25), inset 0 1px 0 rgba(255,255,255,0.08)}
-.lbox h1{color:#FFD700;font-size:36px;font-weight:800;letter-spacing:1px;text-shadow:0 0 18px rgba(255,215,0,0.6)}
-.lbox .sub{color:#7ec8ff;letter-spacing:5px;font-size:11px;margin:8px 0 28px;font-weight:600}
-.lbox input{width:100%;padding:15px;border-radius:30px;border:1px solid #2a5a8a;background:#000e1f;color:#fff;text-align:center;font-size:16px;outline:none;transition:0.3s}
-.lbox input:focus{border-color:#00bfff;box-shadow:0 0 12px rgba(0,191,255,0.5)}
-.btn-gold{width:100%;padding:14px;margin-top:16px;border-radius:30px;border:none;background:linear-gradient(90deg,#b8941f,#FFD700,#e6c200);color:#000;font-weight:800;font-size:17px;cursor:pointer;box-shadow:0 0 18px rgba(255,215,0,0.5);transition:0.2s}
-.btn-gold:active{transform:scale(0.98)}
-#dashboard{display:none;min-height:100vh;background:#02070f;padding:10px}
-@media(min-width:768px){#dashboard{padding:14px}}
-.topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border:1px solid rgba(0,180,255,0.22);border-radius:16px;padding:16px 20px;background:linear-gradient(180deg,rgba(10,25,50,0.7),rgba(5,15,30,0.7));backdrop-filter:blur(10px);box-shadow:0 0 25px rgba(0,180,255,0.12), inset 0 1px 0 rgba(255,255,255,0.06)}
-.topbar h1{font-size:23px;color:#eaf6ff;text-shadow:0 0 12px #00aaff;font-weight:700}
-.topbar small{display:block;font-size:12px;color:#8dc8ff;opacity:0.85;margin-top:3px}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{border:1px solid rgba(0,180,255,0.22);border-radius:22px;padding:7px 14px;font-size:11px;background:rgba(0,0,0,0.45);display:flex;align-items:center;gap:6px}
-.layout{display:grid;grid-template-columns:285px 1fr;gap:14px;margin-top:14px}
-@media(max-width:900px){.layout{grid-template-columns:1fr}}
-.side{border:1px solid rgba(0,180,255,0.22);border-radius:18px;padding:14px;background:linear-gradient(180deg,rgba(8,18,35,0.95),rgba(5,12,25,0.95));box-shadow:inset 0 1px 0 rgba(255,255,255,0.05);height:fit-content}
-.sbtn{width:100%;padding:14px 16px;margin:8px 0;border-radius:13px;border:1px solid rgba(0,180,255,0.14);background:linear-gradient(180deg,rgba(15,35,65,0.85),rgba(8,22,40,0.85));color:#9fd4ff;text-align:right;cursor:pointer;display:flex;align-items:center;gap:12px;font-size:14.5px;font-weight:600;transition:all 0.25s}
-.sbtn:hover{border-color:rgba(0,191,255,0.4);transform:translateX(-3px)}
-.sbtn.active{background:linear-gradient(180deg,rgba(22,62,110,0.95),rgba(12,38,72,0.95));border-color:#00bfff;color:#fff;box-shadow:0 0 18px rgba(0,190,255,0.55), inset 0 0 12px rgba(0,190,255,0.12)}
-.sbtn .icon{width:22px;text-align:center}
-.content{border:1px solid rgba(0,180,255,0.22);border-radius:18px;padding:20px;background:linear-gradient(180deg,rgba(8,18,35,0.92),rgba(5,12,25,0.92));min-height:540px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.05)}
-.content h2{text-align:center;font-size:21px;margin-bottom:20px;color:#d6efff;text-shadow:0 0 12px #00aaff;font-weight:700}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media(max-width:650px){.cards{grid-template-columns:1fr}}
-.card{border:1px solid rgba(0,180,255,0.28);border-radius:16px;padding:20px 10px;text-align:center;background:linear-gradient(180deg,rgba(10,25,50,0.75),rgba(5,15,30,0.75));box-shadow:0 0 18px rgba(0,180,255,0.12), inset 0 0 18px rgba(0,180,255,0.06);position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60%;height:1px;background:linear-gradient(90deg,transparent,#00bfff,transparent)}
-.card .t{font-size:13px;color:#a9d8ff;margin-bottom:10px;font-weight:600}
-.card .n{font-size:46px;font-weight:800;color:#b9e3ff;text-shadow:0 0 22px #00aaff, 0 0 45px #00aaff;line-height:1}
-.card .d{font-size:11px;opacity:0.65;margin-top:8px}
-.tab{display:none}
-.tab.active{display:block;animation:fadeUp 0.35s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.tool{border:1px solid rgba(0,180,255,0.18);border-radius:14px;padding:16px;margin-top:14px;background:rgba(0,0,0,0.25)}
-.tool input{background:#020a14}
-.progress{height:8px;background:#0a1a2e;border-radius:10px;overflow:hidden;margin-top:12px;border:1px solid rgba(0,180,255,0.1)}
-.progress i{display:block;height:100%;background:linear-gradient(90deg,#00bfff,#5cffb0);width:0%;transition:width 0.4s}
-.log{font-family:'Cascadia Code',monospace;font-size:12px;background:#000a14;border:1px solid rgba(0,180,255,0.15);padding:12px;border-radius:10px;margin-top:12px;height:140px;overflow:auto;color:#5cffb0;text-align:left;direction:ltr;white-space:pre-wrap}
-.ops{margin-top:20px;border:1px solid rgba(0,180,255,0.18);border-radius:14px;padding:16px;background:rgba(0,0,0,0.22)}
-.opRow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border:1px solid rgba(0,180,255,0.12);border-radius:12px;padding:14px;background:rgba(10,20,40,0.5);font-size:13px;margin-top:10px}
-.badge-live{border:1px solid rgba(0,255,150,0.35);color:#5cffb0;border-radius:10px;padding:4px 12px;font-size:11px;background:rgba(0,255,150,0.1);font-weight:700}
+body{margin:0;background:#01040a;color:#fff;font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh}
+.box{width:92%;max-width:380px;background:#0c1c3a;border:1px solid #d4af37;border-radius:20px;padding:30px;text-align:center}
+input{width:100%;padding:14px;border-radius:30px;border:1px solid #2a5a8a;background:#000e1f;color:#fff;text-align:center;font-size:18px;letter-spacing:2px;margin-top:15px}
+button{width:100%;padding:14px;margin-top:15px;border-radius:30px;border:none;background:gold;color:#000;font-weight:bold;font-size:17px;cursor:pointer}
+#err{color:#ff5c5c;margin-top:10px;display:none}
+#ok{color:#5cffb0;margin-top:10px;display:none}
 </style>
 </head>
 <body>
-<div id="login">
-  <div class="lbox">
-    <h1>CyberLab</h1>
-    <div class="sub">PREMIUM CYBERSECURITY LAB</div>
-    <input type="password" id="p" placeholder="كلمة السر">
-    <button class="btn-gold" onclick="doLogin()">دخول المختبر 🔓</button>
-    <div id="err" style="display:none;color:#ff5c5c;margin-top:14px;font-size:13px;font-weight:600">كلمة السر خطأ</div>
-  </div>
-</div>
-
-<div id="dashboard">
-  <div class="topbar">
-    <div><h1>لوحة التحكم السيبرانية</h1><small>أدوات الاختراق الأخلاقي • مراقبة أمنية متقدمة</small></div>
-    <div class="chips"><span class="chip">👤 المستخدم: admin_root</span><span class="chip" style="color:#5cffb0">● الحالة: متصل • آمني • مقفل</span></div>
-  </div>
-  <div class="layout">
-    <div class="side">
-      <div class="sbtn active" onclick="openTab('home',this)"><span class="icon">🛡️</span> الرئيسية</div>
-      <div class="sbtn" onclick="openTab('vuln',this)"><span class="icon">🎯</span> فحص الثغرات</div>
-      <div class="sbtn" onclick="openTab('net',this)"><span class="icon">🌐</span> تحليل الشبكة</div>
-      <div class="sbtn" onclick="openTab('enc',this)"><span class="icon">🔒</span> التشفير المتقدم</div>
-      <div class="sbtn" onclick="openTab('monitor',this)"><span class="icon">👁️</span> مراقبة الأنشطة</div>
-      <div class="sbtn" onclick="openTab('report',this)"><span class="icon">📄</span> تقرير التسلل</div>
-      <div class="sbtn" onclick="openTab('sessions',this)"><span class="icon">🗂️</span> إدارة الجلسات</div>
-      <div class="sbtn" onclick="openTab('settings',this)"><span class="icon">⚙️</span> الإعدادات</div>
-    </div>
-    <div class="content">
-      <div id="home" class="tab active"><h2>أدوات الاختراق الأخلاقي</h2><div class="cards"><div class="card"><div class="t">التهديدات المكتشفة</div><div class="n">12</div><div class="d">آخر 24 ساعة +2 جديدة</div></div><div class="card"><div class="t">الفحوصات النشطة</div><div class="n">03</div><div class="d">جلسات جارية: 2</div></div><div class="card"><div class="t">مستوى الحماية</div><div class="n">%98</div><div class="d">ممتاز • جدار الحماية مفعل</div></div></div><div class="ops"><h3 style="text-align:center;margin-bottom:8px">العمليات الأخيرة</h3><div class="opRow"><div>• 443 فحص المنفذ<br><small style="opacity:0.6">مكتمل • منذ 5 دقائق</small></div><div style="text-align:left"><small>تحليل حركة الشبكة - جاري • منذ دقيقة</small> <span class="badge-live">جاري</span></div></div></div></div>
-      <div id="vuln" class="tab"><h2>🎯 فحص الثغرات</h2><div class="tool"><p>أدخل رابط الموقع للفحص</p><input type="text" id="vUrl" placeholder="https://example.com"><button class="btn-gold" onclick="runScan('vuln')">بدء الفحص</button><div class="progress"><i id="vulnBar"></i></div><div class="log" id="vulnLog">> جاهز للفحص...</div></div></div>
-      <div id="net" class="tab"><h2>🌐 تحليل الشبكة</h2><div class="tool"><input type="text" placeholder="192.168.1.1"><button class="btn-gold" onclick="runScan('net')">تحليل</button><div class="log">> nmap -sV 192.168.1.1<br>> PORT 22/tcp open ssh<br>> PORT 80/tcp open http<br>> PORT 443/tcp open https</div></div></div>
-      <div id="enc" class="tab"><h2>🔒 التشفير المتقدم</h2><div class="tool"><input type="text" id="eIn" placeholder="اكتب النص"><button class="btn-gold" onclick="document.getElementById('eOut').innerText=btoa(document.getElementById('eIn').value)">تشفير Base64</button><div class="log" id="eOut" style="color:#FFD700">النتيجة هنا</div></div></div>
-      <div id="monitor" class="tab"><h2>👁️ مراقبة الأنشطة</h2><div class="log" style="height:320px">> [06:41] محاولة دخول فاشلة IP 45.12.33.8 BLOCKED<br>> [06:40] فحص المنفذ 443 مكتمل<br>> [06:38] تسجيل دخول admin_root ناجح<br>> [06:35] جدار الحماية مفعل - المستوى 98%<br>> النظام آمن ومستقر</div></div>
-      <div id="report" class="tab"><h2>📄 تقرير التسلل</h2><div class="tool"><p>• الثغرات الحرجة: 0<br>• المتوسطة: 2<br>• نسبة الأمان: 98%<br>• التوصية: تحديث الجدار الناري</p><button class="btn-gold">تحميل PDF</button></div></div>
-      <div id="sessions" class="tab"><h2>🗂️ إدارة الجلسات</h2><div class="tool"><div class="log">Session #1 admin_root - متصل الآن ✅<br>Session #2 scanner_bot - جاري الفحص 🔄</div><button class="btn-gold" style="background:linear-gradient(90deg,#ff3b3b,#ff6b6b);color:#fff">إنهاء كل الجلسات</button></div></div>
-      <div id="settings" class="tab"><h2>⚙️ الإعدادات</h2><div class="tool"><input type="password" placeholder="كلمة سر جديدة"><button class="btn-gold">حفظ</button></div></div>
-    </div>
-  </div>
+<div class="box">
+<h2 style="color:gold">CyberLab</h2>
+<p style="font-size:11px;letter-spacing:4px;color:#7ec8ff">PREMIUM CYBERSECURITY LAB</p>
+<input type="text" id="p" inputmode="numeric" placeholder="899299292" autocomplete="off">
+<button onclick="check()">دخول المختبر 🔓</button>
+<div id="err"></div>
+<div id="ok">✅ صحيح - جاري الدخول...</div>
+<p style="margin-top:15px;font-size:11px;opacity:0.5">اكتب: 899299292</p>
 </div>
 <script>
-function doLogin(){
-  let v=document.getElementById('p').value.trim();
-  if(v==="899299292"){document.getElementById('login').style.display='none';document.getElementById('dashboard').style.display='block';window.scrollTo(0,0);}
-  else{let e=document.getElementById('err');e.style.display='block';setTimeout(()=>e.style.display='none',2000);}
+function toEnglishNumbers(str){
+  return str.replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/\s/g,'').trim();
 }
-function openTab(id,el){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.sbtn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
+function check(){
+  let raw = document.getElementById('p').value;
+  let cleaned = toEnglishNumbers(raw);
+  console.log("كتبت:", raw, "بعد التنظيف:", cleaned);
+  if(cleaned === "899299292"){
+    document.getElementById('ok').style.display='block';
+    document.getElementById('err').style.display='none';
+    setTimeout(()=>{
+      document.body.innerHTML = `
+      <div style="padding:12px;max-width:1200px;margin:auto;width:100%;color:#d4f0ff">
+        <div style="border:1px solid #1e3a5f;border-radius:16px;padding:16px;background:#0a1a2e;display:flex;justify-content:space-between"><b>لوحة التحكم السيبرانية</b><span style="color:#5cffb0">● متصل</span></div>
+        <div style="display:grid;grid-template-columns:260px 1fr;gap:12px;margin-top:12px">
+          <div style="border:1px solid #1e3a5f;border-radius:16px;padding:12px;background:#0a1a2e">
+            <div style="padding:12px;background:#0f2747;border:1px solid #00bfff;border-radius:10px;color:#fff">🛡️ الرئيسية</div>
+            <div style="padding:12px;margin-top:6px;background:#0f2747;border-radius:10px">🎯 فحص الثغرات</div>
+            <div style="padding:12px;margin-top:6px;background:#0f2747;border-radius:10px">🌐 تحليل الشبكة</div>
+          </div>
+          <div style="border:1px solid #1e3a5f;border-radius:16px;padding:20px;background:#0a1a2e;text-align:center">
+            <h2 style="color:#d6efff">أدوات الاختراق الأخلاقي</h2>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px">
+              <div style="border:1px solid #2a5a8a;padding:15px;border-radius:12px"><div>التهديدات</div><div style="font-size:36px;color:#8dd8ff">12</div></div>
+              <div style="border:1px solid #2a5a8a;padding:15px;border-radius:12px"><div>الفحوصات</div><div style="font-size:36px;color:#8dd8ff">03</div></div>
+              <div style="border:1px solid #2a5a8a;padding:15px;border-radius:12px"><div>الحماية</div><div style="font-size:36px;color:#8dd8ff">98%</div></div>
+            </div>
+            <p style="margin-top:20px;color:#5cffb0">✅ تم الدخول بنجاح - هذه هي النسخة الكاملة بعد التأكد من كلمة السر</p>
+          </div>
+        </div>
+      </div>`;
+    },800);
+  }else{
+    let e = document.getElementById('err');
+    e.style.display='block';
+    e.innerHTML = `❌ خطأ - أنت كتبت: "${raw}" <br> الصحيح هو: 899299292 <br> <small>تأكد أنك تكتب بالإنجليزي بدون مسافات</small>`;
+    document.getElementById('ok').style.display='none';
+  }
 }
-function runScan(t){
-  let bar=document.getElementById(t+'Bar'); let log=document.getElementById(t+'Log'); if(!bar) return;
-  bar.style.width='0%'; log.textContent='> بدأ الفحص...\n'; let w=0;
-  let iv=setInterval(()=>{w+=25; bar.style.width=w+'%'; log.textContent+='> فحص '+w+'%...\n'; if(w>=100){clearInterval(iv); log.textContent+='> ✅ مكتمل - آمن';}},350);
-}
-document.getElementById('p').addEventListener('keypress',e=>{if(e.key==='Enter')doLogin()});
+document.getElementById('p').addEventListener('keypress',e=>{if(e.key==='Enter')check()});
 </script>
 </body>
 </html>
