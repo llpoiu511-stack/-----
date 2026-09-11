@@ -1,62 +1,37 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyberLab</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-  body{background:#020712;color:#c9e8ff;overflow-x:hidden}
-  #loginScreen{
-    width:100%;height:100vh;display:flex;justify-content:center;align-items:center;position:relative;
-    background: #020712 url('cyberlab_luxury_banner.webp') no-repeat center center;
-    background-size: cover;
-  }
-  /* خلفية احتياطية فخمة اذا الصورة مش موجودة */
-  #loginScreen::before{
-    content:'';position:absolute;inset:0;
-    background: radial-gradient(circle at 30% 30%, #0a2a5a 0%, #020712 60%), linear-gradient(120deg, #001a33, #000);
-    z-index:0;
-  }
-  .overlay{position:absolute;inset:0;background:rgba(0,0,0,0.6);z-index:1}
-  .login-box{position:relative;z-index:2;background:rgba(10,25,50,0.9);border:1px solid #d4af37;border-radius:20px;padding:30px;width:92%;max-width:360px;text-align:center;box-shadow:0 0 30px rgba(255,215,0,0.3)}
-  .login-box h2{color:#FFD700;font-size:30px}
-  .login-box p{color:#8dd8ff;font-size:11px;letter-spacing:3px;margin:10px 0 20px}
-  input{width:100%;padding:12px;border-radius:30px;border:1px solid #2a5a8a;background:#000;color:#fff;text-align:center;font-size:16px;margin-bottom:12px}
-  button{width:100%;padding:12px;border-radius:30px;border:none;background:#FFD700;color:#000;font-weight:bold;font-size:16px;cursor:pointer}
-  #dashboardScreen{display:none;max-width:1200px;margin:0 auto;padding:20px}
-  .header{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border:1px solid #1e3a5f;padding:15px;border-radius:12px;background:rgba(10,20,40,0.9)}
-  .badge{padding:5px 10px;border:1px solid #1e3a5f;border-radius:20px;font-size:11px;background:#0a1a2e;margin-left:5px}
-  .main{display:grid;grid-template-columns:260px 1fr;gap:15px;margin-top:15px}
-  .sidebar{border:1px solid #1e3a5f;border-radius:12px;padding:10px;background:rgba(8,18,35,0.95)}
-  .btn{width:100%;padding:12px;margin:6px 0;border:1px solid #2a5a8a;border-radius:10px;background:#0f2747;color:#bfe3ff;text-align:right;cursor:pointer}
-  .btn.active{border-color:#00bfff;color:#fff;box-shadow:0 0 10px rgba(0,190,255,0.4)}
-  .panel{border:1px solid #1e3a5f;border-radius:12px;padding:20px;background:rgba(8,18,35,0.95)}
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .stat{border:1px solid #2a5a8a;border-radius:10px;padding:15px;text-align:center;background:rgba(10,25,50,0.6)}
-  .num{font-size:36px;color:#8dd8ff;font-weight:700}
-</style>
-</head>
-<body>
-<div id="loginScreen">
-  <div class="overlay"></div>
-  <div class="login-box">
-    <h2>CyberLab</h2>
-    <p>PREMIUM CYBERSECURITY LAB</p>
-    <input type="password" id="pass" placeholder="كلمة السر">
-    <button onclick="checkPass()">دخول المختبر</button>
-    <div id="err" style="color:#ff5c5c;font-size:12px;margin-top:8px;display:none">كلمة السر خطأ</div>
-  </div>
+<head><meta charset="UTF-8"><title>CyberLab</title></head>
+<body style="background:#020712;display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif">
+<div style="background:#0a1a2e;border:1px solid gold;padding:30px;border-radius:15px;text-align:center;width:90%;max-width:320px">
+<h2 style="color:gold">CyberLab</h2>
+<input type="password" id="pass" placeholder="كلمة السر" style="width:100%;padding:12px;border-radius:20px;margin:15px 0;text-align:center">
+<button onclick="login()" style="width:100%;padding:12px;border-radius:20px;background:gold;font-weight:bold;cursor:pointer">دخول</button>
+<p id="err" style="color:red;display:none;margin-top:10px">خطأ</p>
 </div>
-
-<div id="dashboardScreen">
-  <div class="header">
-    <div><h2>لوحة التحكم السيبرانية</h2><small>أدوات الاختراق الأخلاقي • مراقبة أمنية متقدمة</small></div>
-    <div><span class="badge">المستخدم: admin_root</span><span class="badge" style="color:#5cffb0">● متصل</span></div>
-  </div>
-  <div class="main">
-    <div class="sidebar">
-      <button class="btn active">🛡️ الرئيسية</button>
-      <button class="btn">🎯 فحص الثغرات</button>
-      <button class="btn">🌐 تحليل الشبكة</button>
+<script>
+function login(){
+  var p = document.getElementById('pass').value.trim();
+  console.log(p);
+  if(p === "899299292"){
+    document.body.innerHTML = `
+    <div style="color:white;padding:20px;max-width:1000px;margin:auto">
+      <h1>✅ تم الدخول بنجاح</h1>
+      <h2>لوحة التحكم السيبرانية</h2>
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:15px;margin-top:20px">
+        <div style="border:1px solid #1e3a5f;padding:10px;border-radius:10px">
+          <div>🛡️ الرئيسية</div><div>🎯 فحص الثغرات</div><div>🌐 تحليل الشبكة</div><div>🔒 التشفير</div><div>👁️ مراقبة الأنشطة</div>
+        </div>
+        <div style="border:1px solid #1e3a5f;padding:20px;border-radius:10px;text-align:center">
+          <h3>أدوات الاختراق الأخلاقي</h3>
+          <p>التهديدات: 12 | الفحوصات: 03 | الحماية: 98%</p>
+        </div>
+      </div>
+    </div>`;
+  }else{
+    document.getElementById('err').style.display='block';
+    document.getElementById('err').innerText = 'كلمة السر خطأ، كتبت: ' + p;
+  }
+}
+</script>
+</body>
+</html>
